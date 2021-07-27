@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="548e5109-7b1c-40e5-a6c3-0a23750c41c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Taco/HCF/tasks/EntityClearTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Taco/HCF/tasks/EntityClearTask.php" afterDir="false" />
+    <list default="true" id="548e5109-7b1c-40e5-a6c3-0a23750c41c8" name="Default Changelist" comment="pre-beta">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../generators/plugins/GeneratorPlugin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
@@ -97,12 +97,38 @@
       <workItem from="1627186348841" duration="951000" />
       <workItem from="1627216890876" duration="19633000" />
       <workItem from="1627271765060" duration="19219000" />
-      <workItem from="1627354311627" duration="1478000" />
+      <workItem from="1627354311627" duration="1888000" />
+      <workItem from="1627356795612" duration="14000" />
+      <workItem from="1627356812724" duration="22000" />
     </task>
+    <task id="LOCAL-00001" summary="pre-beta">
+      <created>1627356199240</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627356199240</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pre-beta" />
+    <option name="LAST_COMMIT_MESSAGE" value="pre-beta" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

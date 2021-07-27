@@ -23,7 +23,7 @@ class KitSelectionForm extends SimpleForm {
 			}
 		);
 		$this->addButton(
-			new Button("Bard", new Icon(Icon::URL, "https://i.ibb.co/CvC3M0M/Untitled-design.png")),
+			new Button("Rogue", new Icon(Icon::URL, "https://i.ibb.co/CvC3M0M/Untitled-design.png")),
 			function (Player $player, int $index) : void {
 				$player->sendForm(new KitConfirmForm("Rogue Kit", "Rogue", KitsManager::TYPE_ROGUE));
 			}

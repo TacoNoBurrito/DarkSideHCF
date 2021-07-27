@@ -45,7 +45,7 @@ class HCFPearl extends Throwable {
     }
 
     public function calculateInterceptWithBlock(Block $block, Vector3 $start, Vector3 $end) : ?RayTraceResult {
-        if ($block instanceof FenceGate && ($block->getDamage() & 0x04) > 0 && in_array(($block->getDamage() & 0x03), [0, 2])) {
+        if ($block instanceof FenceGate && ($block->getMeta() & 0x04) > 0 && in_array(($block->getMeta() & 0x03), [0, 2])) {
             return null;
         } else {
             return $block->calculateIntercept($start, $end);

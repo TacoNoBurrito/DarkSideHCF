@@ -27,14 +27,14 @@ class Diamond extends KitType {
 		$potion = ItemFactory::getInstance()->get(438, 22);
 		$ret[] = $sword;
 		$ret[] = $pearls;
-		for ($i = 0; $i <= 7; $i++) {
+		for ($i = 2; $i <= 7; $i++) {
 			$ret[] = $potion;
 		}
 		$ret[] = $food;
-		for ($i = 0; $i <= 9; $i++) {
+		for ($i = 1; $i <= 10; $i++) {
 			$ret[] = $potion;
 		}
-		for ($i = 0; $i <= (27-9); $i++) {
+		for ($i = 0; $i <= (27-11); $i++) {
 			$ret[] = $potion;
 		}
 		return $ret;
@@ -42,7 +42,7 @@ class Diamond extends KitType {
 
 	public function getArmor() : array {
 		$unbreaking = new EnchantmentInstance(VanillaEnchantments::UNBREAKING(), 2);
-		$prefix = "§7[§bDiamond§7] §r§f";
+		$prefix = "§r§7[§bDiamond§7] §r§f";
 		$helmet = ItemFactory::getInstance()->get(ItemIds::DIAMOND_HELMET);
 		$helmet->setCustomName($prefix."Helmet");
 		$protection = new EnchantmentInstance(VanillaEnchantments::PROTECTION(), 1);

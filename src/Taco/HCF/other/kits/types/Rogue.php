@@ -22,14 +22,14 @@ class Rogue extends KitType {
 		$potion = ItemFactory::getInstance()->get(438, 22);
 		$ret[] = $sword;
 		$ret[] = $pearls;
-		for ($i = 0; $i <= 7; $i++) {
+		for ($i = 0; $i <= 5; $i++) {
 			$ret[] = $potion;
 		}
 		$ret[] = $food;
 		for ($i = 0; $i <= 9; $i++) {
 			$ret[] = ItemFactory::getInstance()->get(ItemIds::GOLD_SWORD,0,1);
 		}
-		for ($i = 0; $i <= (27-9); $i++) {
+		for ($i = 0; $i <= (27-11); $i++) {
 			$ret[] = $potion;
 		}
 		return $ret;
@@ -41,7 +41,7 @@ class Rogue extends KitType {
 
 	function getArmor() : array {
 		$unbreaking = new EnchantmentInstance(VanillaEnchantments::UNBREAKING(), 2);
-		$prefix = "§7[§6Rogue§7] §r§f";
+		$prefix = "§r§7[§6Rogue§7] §r§f";
 		$helmet = ItemFactory::getInstance()->get(ItemIds::CHAIN_HELMET);
 		$helmet->setCustomName($prefix."Helmet");
 		$protection = new EnchantmentInstance(VanillaEnchantments::PROTECTION(), 3);

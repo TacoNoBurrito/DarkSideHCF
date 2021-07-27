@@ -136,7 +136,7 @@ class Utils {
                 }
             }
         }
-        Main::getInstance()->getServer()->broadcastMessage("§c".$killed->getName()."§4[".Main::getInstance()->players[$killed->getName()]["kills"]."] §r§ewas slain by §r§c".$killer->getName()."§4[".Main::getInstance()->players[$killer->getName()]["kills"]."] §r§f".$item);
+        Main::getInstance()->getServer()->broadcastMessage("§c".$killed->getName()."§4[".Main::getInstance()->players[$killed->getName()]["kills"]."] §r§ewas slain by §r§c".$killer->getName()."§4[".Main::getInstance()->players[$killer->getName()]["kills"]."] §r§eusing §r".$item);
     }
 
     public function registerDeathban(Player $player) : void {

@@ -41,7 +41,7 @@ class Bard extends KitType {
 
 	function getArmor() : array {
 		$unbreaking = new EnchantmentInstance(VanillaEnchantments::UNBREAKING(), 2);
-		$prefix = "§7[§eBard§7] §r§f";
+		$prefix = "§r§7[§eBard§7] §r§f";
 		$helmet = ItemFactory::getInstance()->get(ItemIds::GOLD_HELMET);
 		$helmet->setCustomName($prefix."Helmet");
 		$protection = new EnchantmentInstance(VanillaEnchantments::PROTECTION(), 3);

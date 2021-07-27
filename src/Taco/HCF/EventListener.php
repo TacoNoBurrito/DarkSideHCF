@@ -479,19 +479,21 @@ class EventListener implements Listener {
 
     public function onClickItemInClaim(PlayerInteractEvent $event) : void {
     	$player = $event->getPlayer();
-    	$block = $event->getBlock();
-    	$claim = Main::getClaimManager()->getClaimAtPosition($block->getPos());
-    	$faction = Main::getInstance()->players[$player->getName()]["faction"];
-    	if ($claim == "Wilderness") return;
-    	if (in_array($claim, Main::NON_DEATHBAN_CLAIMS)) {
-    		$event->cancel();
-    		return;
-		}
-    	if ($faction !== $claim) {
-			if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
-    		$player->sendMessage("§eYou cannot do this in §d".$claim."§e's claim!");
-    		$event->cancel();
-    		if ($block instanceof FenceGate) $this->unMove[] = $player->getName();
+    	if ($event->getAction() == PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
+			$block = $event->getBlock();
+			$claim = Main::getClaimManager()->getClaimAtPosition($block->getPos());
+			$faction = Main::getInstance()->players[$player->getName()]["faction"];
+			if ($claim == "Wilderness") return;
+			if (in_array($claim, Main::NON_DEATHBAN_CLAIMS)) {
+				$event->cancel();
+				return;
+			}
+			if ($faction !== $claim) {
+				if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
+				$player->sendMessage("§eYou cannot do this in §d" . $claim . "§e's claim!");
+				$event->cancel();
+				if ($block instanceof FenceGate) $this->unMove[] = $player->getName();
+			}
 		}
 	}
 
@@ -519,12 +521,11 @@ class EventListener implements Listener {
 			$event->cancel();
 			return;
 		}
-		var_dump("claim: $claim");
-		var_dump("fac: $faction");
 		if ($claim == "Wilderness") return;
         if ($claim !== $faction and !Main::getInstance()->getServer()->isOp($player->getName())) {
 			if (!isset(Main::getInstance()->factions[$faction])) return;
 			if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
+			if ($claim == "Wilderness") return;
             $event->cancel();
             $player->sendMessage("§eYou cannot build in §d".$claim."§e's claim.");
         }
@@ -551,6 +552,7 @@ class EventListener implements Listener {
         if ($claim !== $faction and !Main::getInstance()->getServer()->isOp($player->getName())) {
         	if (!isset(Main::getInstance()->factions[$faction])) return;
         	if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
+        	if ($claim == "Wilderness") return;
             $event->cancel();
             $player->sendMessage("§eYou cannot build in §d".$claim."§e's claim.");
         }
