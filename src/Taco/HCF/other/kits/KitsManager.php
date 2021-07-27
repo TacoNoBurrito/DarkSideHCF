@@ -4,6 +4,7 @@ use pocketmine\player\Player;
 use Taco\HCF\Main;
 use Taco\HCF\other\kits\forms\KitCooldownForm;
 use Taco\HCF\other\kits\types\Bard;
+use Taco\HCF\other\kits\types\Builder;
 use Taco\HCF\other\kits\types\Diamond;
 use Taco\HCF\other\kits\types\Rogue;
 use Taco\HCF\other\kits\types\Starter;
@@ -24,6 +25,7 @@ class KitsManager {
 	public const TYPE_MINER = 4;
 	public const TYPE_DIAMOND = 5;
 	public const TYPE_MASTER = 6;
+	public const TYPE_BUILDER = 7;
 
 	public function giveKit(Player $player, int $type) : void {
 		$cooldowns = Main::getInstance()->players[$player->getName()]["kits"];
@@ -50,6 +52,14 @@ class KitsManager {
 			}
 			Main::getInstance()->players[$player->getName()]["kits"]["rogue"] = Time::ONE_DAY;
 			$this->giveCombine((new Rogue())->getItems(), (new Rogue())->getArmor(), $player);
+		}
+		if ($type == self::TYPE_BUILDER) {
+			if ($cooldowns["builder"] > 0) {
+				$player->sendForm(new KitCooldownForm(Main::getUtils()->intToTimeString($cooldowns["builder"])));
+				return;
+			}
+			Main::getInstance()->players[$player->getName()]["kits"]["builder"] = Time::ONE_DAY;
+			$this->giveCombine((new Builder())->getItems(), (new Builder())->getArmor(), $player);
 		}
 		if ($type == self::TYPE_DIAMOND) {
 			if ($cooldowns["diamond"] > 0) {

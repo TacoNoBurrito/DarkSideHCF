@@ -17,6 +17,12 @@ class KitSelectionForm extends SimpleForm {
 			}
 		);
 		$this->addButton(
+			new Button("Builder", new Icon(Icon::URL, "https://i.ibb.co/kGkBgkh/Untitled-design-1.png")),
+			function (Player $player, int $index) : void {
+				$player->sendForm(new KitConfirmForm("Builder Kit", "Builder", KitsManager::TYPE_BUILDER));
+			}
+		);
+		$this->addButton(
 			new Button("Bard", new Icon(Icon::URL, "https://i.ibb.co/sqC9B57/Starter-2.png")),
 			function (Player $player, int $index) : void {
 				$player->sendForm(new KitConfirmForm("Bard Kit", "Bard", KitsManager::TYPE_BARD));

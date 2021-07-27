@@ -420,6 +420,27 @@ class FactionCommand extends Command {
                     $sender->sendMessage("§r§l§7(§c!§7) §r§7Only faction leaders can use this command!");
                 }
                 break;
+			case "kick":
+				if ($data["faction"] == "None") {
+					$sender->sendMessage("§r§l§7(§c!§7) §r§7You must be in a faction to use this command.");
+					return;
+				}
+				if (!Main::getFactionManager()->isLeaderOfFaction($sender->getName(), $data["faction"])) {
+					$sender->sendMessage("§r§l§7(§c!§7) §r§7You need to be the leader of your faction to kick a player.");
+					return;
+				}
+				$kick = array_shift($args);
+				if ($kick == "") {
+					$sender->sendMessage("§r§l§7(§c!§7) §r§7You need to provide a player from your faction to kick.");
+					return;
+				}
+				if (!in_array($kick, Main::getFactionManager()->getMembersInFaction($data["faction"]))) {
+					$sender->sendMessage("§r§l§7(§c!§7) §r§7This player is not in your faction.");
+					return;
+				}
+				unset(Main::getInstance()->factions[$data["faction"]][$kick]);
+				$sender->sendMessage("§r§l§7(§c!§7) §r§fSuccessfully kicked §a$kick §ffrom your faction.");
+				break;
 			case "claim":
 				if ($data["faction"] == "None") {
 					$sender->sendMessage("§r§l§7(§c!§7) §r§7You must be in a faction to use this command.");
@@ -494,7 +515,29 @@ class FactionCommand extends Command {
 				break;
 			case "top":
 				$top = [];
-
+				foreach (Main::getInstance()->factions as $name => $info) {
+					$top[$name] = 0;
+					foreach (Main::getFactionManager()->getMembersInFaction($name) as $pna) {
+						$kills = Main::getInstance()->players[$pna]["kills"];
+						$top[$name] += $kills;
+					}
+				}
+				asort($top);
+				$topString = "";
+				$topPos = 1;
+				foreach ($top as $name => $kills) {
+					$number = "";
+					if ($topPos == 1) $number = "§2#1";
+					if ($topPos == 2) $number = "§a#2";
+					if ($topPos == 3) $number = "§6#3";
+					if ($topPos > 3) $number = "§7#".$topPos;
+					$topString .= "§r$number"." §c$name §7| §r§f".$kills;
+					if (!($topPos + 1) > 10) $topString .= "\n";
+					$topPos++;
+				}
+				$sender->sendMessage("§7".str_repeat("―", 25));
+				$sender->sendMessage($topString);
+				$sender->sendMessage("§7".str_repeat("―", 25));
 				break;
             default:
                 $sender->sendMessage(Main::getUtils()->arrayToDescendingString($help));
