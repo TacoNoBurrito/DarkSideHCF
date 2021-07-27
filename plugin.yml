@@ -1,0 +1,6 @@
+name: MonkeyMoment
+author: Taco
+description: "DarkSide HCF By Taco"
+main: Taco\HCF\Main
+version: 1.0.0
+api: "4.0.0"
