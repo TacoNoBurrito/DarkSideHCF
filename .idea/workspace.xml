@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="548e5109-7b1c-40e5-a6c3-0a23750c41c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Taco/HCF/tasks/EntityClearTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Taco/HCF/tasks/EntityClearTask.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/../../../HCF-4.0/HCF/pm4p" />
+      <path value="$PROJECT_DIR$/../../pm4p" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1vE6J5i8eRGSIrJyK5er3kPgKWx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../generators/plugins/GeneratorPlugin" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="548e5109-7b1c-40e5-a6c3-0a23750c41c8" name="Default Changelist" comment="" />
+      <created>1626114826098</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626114826098</updated>
+      <workItem from="1626114827293" duration="6350000" />
+      <workItem from="1626127561618" duration="8970000" />
+      <workItem from="1626198448007" duration="4605000" />
+      <workItem from="1626204144308" duration="704000" />
+      <workItem from="1626210549895" duration="12368000" />
+      <workItem from="1626267658710" duration="4633000" />
+      <workItem from="1626284169908" duration="11570000" />
+      <workItem from="1626311862839" duration="2522000" />
+      <workItem from="1626315834918" duration="10115000" />
+      <workItem from="1626328400689" duration="4000" />
+      <workItem from="1626361038936" duration="6569000" />
+      <workItem from="1626402973041" duration="5407000" />
+      <workItem from="1626410833821" duration="4297000" />
+      <workItem from="1626448302601" duration="10841000" />
+      <workItem from="1626480109979" duration="6794000" />
+      <workItem from="1626491246182" duration="1343000" />
+      <workItem from="1626496724607" duration="2677000" />
+      <workItem from="1626499487675" duration="4272000" />
+      <workItem from="1626532161796" duration="599000" />
+      <workItem from="1626536154183" duration="1541000" />
+      <workItem from="1626558653919" duration="2076000" />
+      <workItem from="1626566153344" duration="9881000" />
+      <workItem from="1626615741661" duration="5218000" />
+      <workItem from="1626621664092" duration="4745000" />
+      <workItem from="1626649532980" duration="3556000" />
+      <workItem from="1626660556333" duration="2073000" />
+      <workItem from="1626729551351" duration="2094000" />
+      <workItem from="1626739346991" duration="1185000" />
+      <workItem from="1626742816423" duration="645000" />
+      <workItem from="1626803898862" duration="5506000" />
+      <workItem from="1626810462618" duration="46704000" />
+      <workItem from="1627005637391" duration="3660000" />
+      <workItem from="1627010752058" duration="84000" />
+      <workItem from="1627054407663" duration="3369000" />
+      <workItem from="1627069974568" duration="1168000" />
+      <workItem from="1627090170998" duration="5403000" />
+      <workItem from="1627143983130" duration="6329000" />
+      <workItem from="1627157357618" duration="234000" />
+      <workItem from="1627157718356" duration="7723000" />
+      <workItem from="1627165717925" duration="547000" />
+      <workItem from="1627168252195" duration="7438000" />
+      <workItem from="1627186348841" duration="951000" />
+      <workItem from="1627216890876" duration="19633000" />
+      <workItem from="1627271765060" duration="19219000" />
+      <workItem from="1627354311627" duration="1478000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$USER_HOME$/Downloads/NiggerHCF/plugins/NiggerHCF/src/friscowz/hc/listener/PlayerListener.php</url>
+          <line>801</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

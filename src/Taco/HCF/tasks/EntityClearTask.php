@@ -15,7 +15,7 @@ class EntityClearTask extends Task {
 			}
 		}
 		foreach (Main::getInstance()->getServer()->getOnlinePlayers() as $player) {
-			$player->sendPopup("Cleared all Item Entities.");
+			$player->sendPopup("§cCleared all Item Entities.");
 		}
 	}
 
