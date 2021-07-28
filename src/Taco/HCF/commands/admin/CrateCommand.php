@@ -65,7 +65,7 @@ class CrateCommand extends Command {
 							$sender->sendMessage("$type is not a real crate type. Here is a list of types: [".implode(",", Main::getCrateUtils()::TYPES)."]");
 							return;
 						}
-						Main::getInstance()->crate[$type] = Main::getUtils()->vec3ToString($sender->getPosition()->add(0, 2, 0));
+						Main::getInstance()->crate[$type] = Main::getUtils()->vec3ToString($sender->getPosition()->add(0, 0, 0));
 						$sender->sendMessage("set crate pos");
 						Main::getCrateUtils()->reloadCratePulsatingFloatingTextEntities();
 					}

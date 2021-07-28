@@ -189,9 +189,6 @@ class Main extends PluginBase {
         self::$partnerManager = new PartnerManager();
         self::$kitsManager = new KitsManager();
         self::$kothManager = new KothManager();
-        self::$crateUtils = new CrateUtil();
-        self::$crateUtils->initCrates();
-        self::$crateUtils->reloadCratePulsatingFloatingTextEntities();
 
         $this->playerData = new Config($this->getDataFolder()."playerData.yml", Config::YAML);
         $this->factionData = new Config($this->getDataFolder()."factionData.yml", Config::YAML);
@@ -205,12 +202,13 @@ class Main extends PluginBase {
         $this->koth = (array)$this->kothData->getAll();
         $this->crate = (array)$this->crateData->getAll();
 
-        $this->getScheduler()->scheduleRepeatingTask(new ScoreboardTask(), 15);
+        $this->getScheduler()->scheduleRepeatingTask(new ScoreboardTask(), 20);
         $this->getScheduler()->scheduleRepeatingTask(new TimerTask(), 20);
         $this->getScheduler()->scheduleRepeatingTask(new BardRegenTask(), 15);
         $this->getScheduler()->scheduleRepeatingTask(new ServerPlayerUpdateTask(), 20 * 60);
         $this->getScheduler()->scheduleRepeatingTask(new NESWTask(), 2);
 		$this->getScheduler()->scheduleRepeatingTask(new EntityClearTask(), 20 * 600);
+
 		if (count($this->koth) < 1) {
 			$this->getLogger()->critical("There are no KoTH arenas setup. Please do /koth help in-game to setup arenas.");
 		} else $this->getScheduler()->scheduleRepeatingTask(new KothTask(), 22);
@@ -266,6 +264,10 @@ class Main extends PluginBase {
 		}
 
         $this->hud = (new DiverseBossBar())->setTitle(" ");
+
+		self::$crateUtils = new CrateUtil();
+		self::$crateUtils->initCrates();
+		self::$crateUtils->reloadCratePulsatingFloatingTextEntities();
 
         $this->getLogger()->alert("\n§a\n§a\n§r§l§cDarkSide HCF Initialized.\nCreated by Taco. Please do not use without permission.\n§c\n§b");
     }

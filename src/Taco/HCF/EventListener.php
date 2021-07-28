@@ -263,7 +263,47 @@ class EventListener implements Listener {
             	$ones = ["Sell", "Buy"];
             	if (in_array(strtolower($lines[0]), $ones)) {
             		if (in_array(Main::getClaimManager()->getClaimAtPosition($pos), Main::NON_DEATHBAN_CLAIMS)) {
-            			$player->sendMessage("no cookies 4 u");
+            			$explode = explode(":", $lines[1]);
+            			$id = (int)$explode[0];
+            			$meta = (int)$explode[1];
+            			$price = (int)$lines[2];
+            			$amount = (int)$lines[3];
+            			if ($lines[0] == "Sell") {
+            				$sold = false;
+            				foreach ($player->getInventory()->getContents() as $index => $item) {
+            					if ($item->getId() == $id and $item->getMeta() == $meta) {
+            						if ($item->getCount() == $amount) {
+            							$player->getInventory()->setItem($index, $item->setCount($item->getCount() - $amount));
+            							$player->sendPopup("§aSold {$amount}x ".ItemFactory::getInstance()->get($id, $meta)->getName()." §r§afor \$$price!");
+            							Main::getInstance()->players[$player->getName()]["money"] += $price;
+            							$sold = true;
+            							break;
+									}
+								}
+							}
+            				if (!$sold) $player->sendPopup("§cYou do not have the required items in your inventory.");
+						} else if ($lines[0] == "Buy") {
+							$explode = explode(":", $lines[1]);
+							$id = (int)$explode[0];
+							$meta = (int)$explode[1];
+							$price = (int)$lines[2];
+							$amount = (int)$lines[3];
+							$money = Main::getInstance()->players[$player->getName()]["money"];
+							if ($money >= $price) {
+								$item = ItemFactory::getInstance()->get($id, $meta, $amount);
+								Main::getInstance()->players[$player->getName()]["money"] -= $price;
+								if ($player->getInventory()->canAddItem($item)) {
+									$player->sendMessage("§aSuccessfully purchased x".$amount." ".$item->getName()."!");
+									$player->getInventory()->addItem($item);
+								} else {
+									$player->sendMessage("§aSuccessfully purchased x".$amount." ".$item->getName()."! Your items have been dropped on the ground.");
+									$player->getWorld()->dropItem($player->getPosition(), $item);
+								}
+								Main::getInstance()->players[$player->getName()]["money"] -= $price;
+							} else {
+								$player->sendPopup("§cYou do not have enough money to make this purchase.");
+							}
+						}
 					}
 				}
 			}
@@ -323,6 +363,7 @@ class EventListener implements Listener {
 
     public function onClaimInteract(PlayerInteractEvent $event) : void {
     	$player = $event->getPlayer();
+		if (Main::getInstance()->getServer()->isOp($player->getName())) return;
 		/*if (time() - $this->interactCooldown[$player->getName()] < 1) {
 			if (!$event->getBlock() instanceof FenceGate) {
 				$event->cancel();
@@ -392,7 +433,7 @@ class EventListener implements Listener {
 					return;
 				}
 			}
-            $event->setKnockBack(0.382);
+            $event->setKnockBack(0.415);
             Main::getInstance()->players[$hit->getName()]["timers"]["spawntag"] = 20;
             Main::getInstance()->players[$damager->getName()]["timers"]["spawntag"] = 20;
             $item = $damager->getInventory()->getItemInHand();
@@ -423,7 +464,8 @@ class EventListener implements Listener {
 			}
         }
     }
-	private $bardItemCooldown = [];
+	private array $bardItemCooldown = [];
+
     public function bardItem(PlayerInteractEvent $event) : void {
         $player = $event->getPlayer();
         if (!isset($this->bardItemCooldown[$player->getName()])) {
@@ -479,6 +521,7 @@ class EventListener implements Listener {
 
     public function onClickItemInClaim(PlayerInteractEvent $event) : void {
     	$player = $event->getPlayer();
+		if (Main::getInstance()->getServer()->isOp($player->getName())) return;
     	if ($event->getAction() == PlayerInteractEvent::RIGHT_CLICK_BLOCK) {
 			$block = $event->getBlock();
 			$claim = Main::getClaimManager()->getClaimAtPosition($block->getPos());
@@ -489,6 +532,10 @@ class EventListener implements Listener {
 				return;
 			}
 			if ($faction !== $claim) {
+				if (!isset(Main::getInstance()->factions[$faction])) {
+					$event->cancel();
+					return;
+				}
 				if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
 				$player->sendMessage("§eYou cannot do this in §d" . $claim . "§e's claim!");
 				$event->cancel();
@@ -499,6 +546,7 @@ class EventListener implements Listener {
 
     public function onPlace(BlockPlaceEvent $event) : void {
         $player = $event->getPlayer();
+		if (Main::getInstance()->getServer()->isOp($player->getName())) return;
         $pos = $event->getBlock();
         $claim = Main::getClaimManager()->getClaimAtPosition($pos->getPos());
         $faction = Main::getInstance()->players[$player->getName()]["faction"];
@@ -523,7 +571,10 @@ class EventListener implements Listener {
 		}
 		if ($claim == "Wilderness") return;
         if ($claim !== $faction and !Main::getInstance()->getServer()->isOp($player->getName())) {
-			if (!isset(Main::getInstance()->factions[$faction])) return;
+			if (!isset(Main::getInstance()->factions[$faction])) {
+				$event->cancel();
+				return;
+			}
 			if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
 			if ($claim == "Wilderness") return;
             $event->cancel();
@@ -533,6 +584,7 @@ class EventListener implements Listener {
 
     public function onBreak(BlockBreakEvent $event) : void {
         $player = $event->getPlayer();
+		if (Main::getInstance()->getServer()->isOp($player->getName())) return;
         $pos = $event->getBlock()->getPos();
         $claim = Main::getClaimManager()->getClaimAtPosition($pos);
         $faction = Main::getInstance()->players[$player->getName()]["faction"];
@@ -550,7 +602,10 @@ class EventListener implements Listener {
 			return;
 		}
         if ($claim !== $faction and !Main::getInstance()->getServer()->isOp($player->getName())) {
-        	if (!isset(Main::getInstance()->factions[$faction])) return;
+			if (!isset(Main::getInstance()->factions[$faction])) {
+				$event->cancel();
+				return;
+			}
         	if ((float)Main::getInstance()->factions[$faction]["dtr"] < 0.1) return;
         	if ($claim == "Wilderness") return;
             $event->cancel();
@@ -575,7 +630,7 @@ class EventListener implements Listener {
 					$owner->getNetworkSession()->sendDataPacket($pk);
     				$owner->sendMessage("§d".$hit->getName()." §eis now at §d".round($hit->getHealth(), 2)." §ehearts!");
 				} else if ($entity instanceof Switcher) {
-					$owner->sendMessage("§eYou have switchered §d".$hit->getName()."§e! s§d(".floor($hit->getPosition()->distance($entity->getStartPos()))." blocks)");
+					$owner->sendMessage("§eYou have switchered §d".$hit->getName()."§e! §d(".floor($hit->getPosition()->distance($entity->getStartPos()))." blocks)");
     				$pos1 = $owner->getPosition();
     				$pos2 = $hit->getPosition();
 					$hit->teleport($pos1);
@@ -599,7 +654,7 @@ class EventListener implements Listener {
 
 	public function onCrateInteract(PlayerInteractEvent $event) : void {
     	$player = $event->getPlayer();
-    	if (!in_array(Main::getClaimManager()->getClaimAtPosition($player->getPosition()), Main::NON_DEATHBAN_CLAIMS)) return;
+    	if (!in_array(Main::getClaimManager()->getClaimAtPosition($player->getPosition()), Main::NON_DEATHBAN_CLAIMS)and!(Main::getInstance()->getServer()->isOp($player->getName()))) return;
     	$item = $player->getInventory()->getItemInHand();
     	if (Main::getCrateUtils()->isRealCrateKey($item)) {
 			$block = $event->getBlock();
@@ -631,15 +686,13 @@ class EventListener implements Listener {
 	public function onPreProcess(PlayerCommandPreprocessEvent $event) : void {
     	$player = $event->getPlayer();
     	if (isset($this->pcpeCooldown[$player->getName()])) {
-    		if (time() - $this->pcpeCooldown[$player->getName()] < 2) {
+    		if (time() - $this->pcpeCooldown[$player->getName()] < 1) {
     			$player->sendMessage("§cPlease don't spam commands and/or messages.");
     			$event->cancel();
     			return;
 			}
-    		$this->pcpeCooldown[$player->getName()] = time();
-		} else {
-    		$this->pcpeCooldown[$player->getName()] = time();
 		}
+		$this->pcpeCooldown[$player->getName()] = time();
 	}
 
 }

@@ -98,7 +98,7 @@ class CrateUtil {
 		foreach (Main::getInstance()->crate as $name => $pos) {
 			$toPos = Main::getUtils()->stringToVec3($pos);
 			Main::getInstance()->getServer()->getWorldManager()->getDefaultWorld()->loadChunk($toPos->getX() >> 4, $toPos->getZ() >> 4);
-			$entity = new PulsatingCrateEntity(Location::fromObject($toPos->floor()->add(0.5, 0, 0.5), Main::getInstance()->getServer()->getWorldManager()->getDefaultWorld()), null, $name);
+			$entity = new PulsatingCrateEntity(Location::fromObject($toPos->floor()->add(0.5, 2, 0.5), Main::getInstance()->getServer()->getWorldManager()->getDefaultWorld()), null, $name);
 			$entity->spawnToAll();
 		}
 	}

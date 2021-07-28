@@ -67,32 +67,33 @@ private bool $isDed = false;
 					$this->getPosition()->getWorld()->dropItem($this->getPosition(), $drop);
 				}
 				$this->isDed = true;
-
 			}
 		} else {
 			$source->cancel();
 		}
 	}
     public function entityBaseTick(int $tickDiff = 1) : bool {
-		parent::entityBaseTick($tickDiff);
         $this->tickk++;
         if (($this->tickk % 20) == 0) {
-            if ((!$this->isAlive()) and (!$this->closed)) {
-                $this->flagForDespawn();
-                return false;
-            }
+            if ($this->isDed) {
+            	$this->setInvisible(true);
+				$this->setScale(0.001);
+            	$this->flagForDespawn();
+            	return true;
+			}
             if (Main::getInstance()->getServer()->getPlayerByPrefix($this->playerName) !== null) {
+				$this->setInvisible(true);
+				$this->setScale(0.001);
                 $this->flagForDespawn();
-                return false;
+                return true;
             }
             $this->time--;
             $this->setNameTag("§f" . $this->playerName . " §e[§c" . Main::getUtils()->secondsToEnderpearlCD($this->time) . "§r§e] §c" . floor($this->getHealth()) . "§f/§c" . floor($this->getMaxHealth()));
-            $this->isDed = true;
         }
 		if ($this->isClosed() or $this->closed or !$this->isAlive() or $this->isDed) {
 			$this->flagForDespawn();
 		}
-        return true;
+        return parent::entityBaseTick($tickDiff);
     }
 
     public function tryChangeMovement(): void

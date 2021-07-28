@@ -60,9 +60,10 @@ class PulsatingCrateEntity extends Living  {
 	}
 
 	public function entityBaseTick(int $tickDiff = 1) : bool {
+		if ($this->isFlaggedForDespawn()) return false;
 		$this->tick++;
 		$this->randomUpdateTick++;
-		if ($this->randomUpdateTick > (20 * 5)) {
+		if ($this->randomUpdateTick > (20 * 3)) {
 			$this->isRandomUpdate = true;
 			$this->randomUpdateTick = 0;
 		}
