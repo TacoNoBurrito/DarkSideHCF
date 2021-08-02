@@ -9,6 +9,7 @@
  - This core will no longer be updated (unless paid)
  - This core will only work on pocketmine 4.0.0+
  - This core will not be downgraded to 3.0.0
+ - Most of this core is rushed, and is not my best work in any way.
 
 # What does it have?
 
