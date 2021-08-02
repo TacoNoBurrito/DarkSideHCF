@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="PhpIncludePathManager">
-    <include_path>
-      <path value="$PROJECT_DIR$/../../../HCF-4.0/HCF/pm4p" />
-      <path value="$PROJECT_DIR$/../../pm4p" />
-    </include_path>
-  </component>
-</project>
